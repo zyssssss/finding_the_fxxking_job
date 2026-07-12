@@ -1,7 +1,7 @@
 {
   "name": "career-ops",
   "version": "1.0.0",
-  "description": "AI-powered job search pipeline built on Claude Code",
+  "description": "AI-powered job search pipeline for Claude Code, Codex, Cursor, OpenCode, and AutoCLI-assisted discovery",
   "scripts": {
     "doctor": "node doctor.mjs",
     "verify": "node verify-pipeline.mjs",
@@ -14,14 +14,18 @@
     "update": "node update-system.mjs apply",
     "rollback": "node update-system.mjs rollback",
     "liveness": "node check-liveness.mjs",
-    "scan": "node scan.mjs"
+    "scan": "node scan.mjs",
+    "seeds:filter": "node filter-company-seeds.mjs",
+    "seeds:discover": "node seed-discovery.mjs",
+    "kdocs:probe": "node probe-kdocs.mjs"
   },
   "keywords": [
     "ai",
     "job-search",
     "claude-code",
     "career",
-    "automation"
+    "automation",
+    "autocli"
   ],
   "author": "Santiago Fernández de Valderrama <hi@santifer.io> (https://santifer.io)",
   "homepage": "https://santifer.io",

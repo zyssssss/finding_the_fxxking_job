@@ -1,0 +1,234 @@
+title_filter:
+  positive:
+    - "AI"
+    - "云"
+    - "云计算"
+    - "AWS"
+    - "出海"
+    - "海外"
+    - "全球"
+    - "国际业务"
+    - "Web3"
+    - "区块链"
+    - "互联网"
+    - "SaaS"
+    - "解决方案"
+    - "解决方案销售"
+    - "售前"
+    - "销售"
+    - "渠道销售"
+    - "大客户销售"
+    - "客户经理"
+    - "技术客户经理"
+    - "商务拓展"
+    - "生态合作"
+    - "渠道"
+    - "合作伙伴"
+    - "BD"
+    - "Business Development"
+    - "Account Executive"
+    - "Account Manager"
+    - "Sales"
+    - "Partnerships"
+    - "客户成功"
+    - "Customer Success"
+    - "Technical Account"
+    - "Solution Sales"
+    - "Pre-sales"
+    - "Cloud"
+    - "云"
+    - "大模型"
+    - "LLM"
+    - "Agent"
+  negative:
+    - "Intern"
+    - "Junior"
+    - "实习"
+    - "电话销售"
+    - "网络销售"
+    - "电销"
+    - "销冠"
+    - "日入"
+    - "月入"
+    - "精准客源"
+    - "面试即上班"
+    - "当天给结果"
+    - "无限获客"
+    - "无责"
+    - "高提成"
+    - "金融销售"
+    - "房产"
+    - "地产"
+    - "教育"
+    - "留学"
+    - "移民"
+    - "银行"
+    - "本地生活"
+    - "生活服务"
+    - "财税"
+    - "体育"
+    - "球馆"
+    - "客服"
+    - "导购"
+    - "主播"
+    - "地推"
+    - "置业顾问"
+    - "保险销售"
+    - "招商主管"
+    - "后端开发"
+    - "前端开发"
+    - "Java开发"
+    - "测试工程师"
+  seniority_boost:
+    - "Senior"
+    - "资深"
+    - "负责人"
+    - "总监"
+    - "经理"
+    - "总监"
+    - "Head"
+
+search_queries: []
+
+autocli_sources:
+  - name: Boss直聘 — AI ToB销售
+    platform: boss
+    enabled: true
+    command:
+      - C:\finding_worker\career-ops\autocli-bin\autocli.exe
+      - boss
+      - search
+      - AI ToB 销售 深圳
+      - --limit
+      - "20"
+      - --format
+      - json
+    fields:
+      title: name
+      url: url
+      company: company
+      location: area
+      detail_id: security_id
+    detail_command:
+      - C:\finding_worker\career-ops\autocli-bin\autocli.exe
+      - boss
+      - detail
+      - "{{offer.detailId}}"
+      - --format
+      - json
+    detail_fields:
+      description: description
+
+  - name: Boss直聘 — 腾讯云/云计算 出海
+    platform: boss
+    enabled: true
+    command:
+      - C:\finding_worker\career-ops\autocli-bin\autocli.exe
+      - boss
+      - search
+      - 腾讯云 出海 销售 深圳
+      - --limit
+      - "20"
+      - --format
+      - json
+    fields:
+      title: name
+      url: url
+      company: company
+      location: area
+      detail_id: security_id
+    detail_command:
+      - C:\finding_worker\career-ops\autocli-bin\autocli.exe
+      - boss
+      - detail
+      - "{{offer.detailId}}"
+      - --format
+      - json
+    detail_fields:
+      description: description
+
+  - name: Boss直聘 — SaaS出海 KA销售
+    platform: boss
+    enabled: true
+    command:
+      - C:\finding_worker\career-ops\autocli-bin\autocli.exe
+      - boss
+      - search
+      - SaaS 出海 KA 销售 深圳
+      - --limit
+      - "20"
+      - --format
+      - json
+    fields:
+      title: name
+      url: url
+      company: company
+      location: area
+      detail_id: security_id
+    detail_command:
+      - C:\finding_worker\career-ops\autocli-bin\autocli.exe
+      - boss
+      - detail
+      - "{{offer.detailId}}"
+      - --format
+      - json
+    detail_fields:
+      description: description
+
+  - name: Boss直聘 — 渠道BD/企业服务
+    platform: boss
+    enabled: true
+    command:
+      - C:\finding_worker\career-ops\autocli-bin\autocli.exe
+      - boss
+      - search
+      - 渠道 BD 企业服务 深圳
+      - --limit
+      - "20"
+      - --format
+      - json
+    fields:
+      title: name
+      url: url
+      company: company
+      location: area
+      detail_id: security_id
+    detail_command:
+      - C:\finding_worker\career-ops\autocli-bin\autocli.exe
+      - boss
+      - detail
+      - "{{offer.detailId}}"
+      - --format
+      - json
+    detail_fields:
+      description: description
+
+  - name: Boss直聘 — Web3商务拓展
+    platform: boss
+    enabled: true
+    command:
+      - C:\finding_worker\career-ops\autocli-bin\autocli.exe
+      - boss
+      - search
+      - Web3 商务拓展 深圳
+      - --limit
+      - "20"
+      - --format
+      - json
+    fields:
+      title: name
+      url: url
+      company: company
+      location: area
+      detail_id: security_id
+    detail_command:
+      - C:\finding_worker\career-ops\autocli-bin\autocli.exe
+      - boss
+      - detail
+      - "{{offer.detailId}}"
+      - --format
+      - json
+    detail_fields:
+      description: description
+
+tracked_companies: []

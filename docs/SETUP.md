@@ -2,8 +2,9 @@
 
 ## Prerequisites
 
-- [Claude Code](https://claude.ai/code) installed and configured
+- One AI coding CLI: Claude Code, Codex, Cursor, or OpenCode
 - Node.js 18+ (for PDF generation and utility scripts)
+- (Optional) [AutoCLI](https://github.com/nashsu/AutoCLI) for Boss / LinkedIn discovery
 - (Optional) Go 1.21+ (for the dashboard TUI)
 
 ## Quick Start (5 steps)
@@ -42,12 +43,16 @@ Edit `portals.yml`:
 - Add companies you want to track in `tracked_companies`
 - Customize `search_queries` for your preferred job boards
 
-### 5. Start using
+### 5. Optional: connect AutoCLI for Boss / LinkedIn
 
-Open Claude Code in this directory:
+See [docs/AUTOCLI.md](AUTOCLI.md), then enable `autocli_sources` in `portals.yml`.
+
+### 6. Start using
+
+Open your AI CLI in this directory:
 
 ```bash
-claude
+claude   # or codex / cursor / opencode
 ```
 
 Then paste a job offer URL or description. Career-ops will automatically evaluate it, generate a report, create a tailored PDF, and track it.
@@ -57,7 +62,7 @@ Then paste a job offer URL or description. Career-ops will automatically evaluat
 | Action | How |
 |--------|-----|
 | Evaluate an offer | Paste a URL or JD text |
-| Search for offers | `/career-ops scan` |
+| Search for offers | `/career-ops scan` or `npm run scan` |
 | Process pending URLs | `/career-ops pipeline` |
 | Generate a PDF | `/career-ops pdf` |
 | Batch evaluate | `/career-ops batch` |

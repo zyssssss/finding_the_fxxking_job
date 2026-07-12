@@ -43,7 +43,7 @@ To rollback: `node update-system.mjs rollback`
 
 ## What is career-ops
 
-AI-powered job search automation built on Claude Code: pipeline tracking, offer evaluation, CV generation, portal scanning, batch processing.
+AI-powered job search automation built on Claude Code and compatible AI CLIs: pipeline tracking, offer evaluation, CV generation, portal scanning, batch processing.
 
 ### Main Files
 
@@ -53,6 +53,7 @@ AI-powered job search automation built on Claude Code: pipeline tracking, offer 
 | `data/pipeline.md` | Inbox of pending URLs |
 | `data/scan-history.tsv` | Scanner dedup history |
 | `portals.yml` | Query and company config |
+| `portals.yml` `autocli_sources` | Optional Boss / LinkedIn AutoCLI ingest |
 | `templates/cv-template.html` | HTML template for CVs |
 | `generate-pdf.mjs` | Playwright: HTML to PDF |
 | `article-digest.md` | Compact proof points from portfolio (optional) |
@@ -89,6 +90,15 @@ When using [OpenCode](https://opencode.ai), the following slash commands are ava
 | `/career-ops-followup` | `/career-ops followup` | Follow-up cadence tracker |
 
 **Note:** OpenCode commands invoke the same `.claude/skills/career-ops/SKILL.md` skill used by Claude Code. The `modes/*` files are shared between both platforms.
+
+### AutoCLI Discovery
+
+When the user wants stronger job discovery from Boss or LinkedIn, use AutoCLI as the discovery layer and keep the normal Career-Ops pipeline for everything else.
+
+- Configure `autocli_sources` in `portals.yml`
+- Read `modes/autocli-scan.md` for routing
+- Run `node scan.mjs` to ingest results into `data/pipeline.md`
+- Continue with normal evaluation / PDF / tracker flow
 
 ### First Run — Onboarding (IMPORTANT)
 
@@ -131,6 +141,8 @@ If `portals.yml` is missing:
 > "I'll set up the job scanner with 45+ pre-configured companies. Want me to customize the search keywords for your target roles?"
 
 Copy `templates/portals.example.yml` → `portals.yml`. If they gave target roles in Step 2, update `title_filter.positive` to match.
+
+If the user mainly discovers roles on Boss or LinkedIn, also offer AutoCLI onboarding and point them to `docs/AUTOCLI.md`.
 
 #### Step 4: Tracker
 If `data/applications.md` doesn't exist, create it:

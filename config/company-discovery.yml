@@ -1,0 +1,58 @@
+allowed_company_natures:
+  - 民营企业
+  - 外企
+  - 港澳合资
+
+priority_industries:
+  - 互联网
+  - 人工智能
+  - AI
+  - 云计算
+  - 计算机软件
+  - 企业服务
+  - SaaS
+  - 区块链
+  - Web3
+  - 大数据
+  - 大模型
+
+secondary_industries: []
+
+excluded_industries: []
+
+official_search_queries:
+  - "{{company_name}} 社会招聘"
+  - "{{company_name}} 招聘官网 社招"
+  - "{{company_name}} careers"
+
+boss_query_templates:
+  - "{{company_name}} 销售"
+  - "{{company_name}} 大客户销售"
+  - "{{company_name}} 商务拓展"
+  - "{{company_name}} 渠道 BD"
+  - "{{company_name}} 出海"
+  - "{{company_name}} 产品经理"
+  - "{{company_name}} 工程师"
+
+location_priority:
+  high:
+    - 深圳
+    - base深圳
+    - 全国出差
+    - 全球出差
+  medium:
+    - 广州
+    - 东莞
+    - 珠海
+    - 香港
+
+ignored_domains:
+  - boss直聘
+  - zhipin
+  - liepin
+  - 51job
+  - zhaopin
+  - kanzhun
+  - lagou
+  - jobui
+  - maimai

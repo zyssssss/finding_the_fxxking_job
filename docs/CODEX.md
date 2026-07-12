@@ -47,6 +47,15 @@ The key point: Codex support is additive. It should route into the existing
 Career-Ops modes and scripts rather than introducing a parallel automation
 layer.
 
+## Boss / LinkedIn Discovery
+
+If the user wants stronger discovery from Boss or LinkedIn, configure
+`autocli_sources` in `portals.yml` and use `scan.mjs` as the ingestion point.
+
+- Read `docs/AUTOCLI.md`
+- Use `modes/autocli-scan.md` when routing that work
+- Keep writing new offers into `data/pipeline.md`
+
 ## Behavioral Rules
 
 - Treat raw JD text or a job URL as the full auto-pipeline path unless the user explicitly asks for evaluation only.

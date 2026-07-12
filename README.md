@@ -49,12 +49,13 @@ Career-Ops turns any AI coding CLI into a full job search command center. Instea
 - **Evaluates offers** with a structured A-F scoring system (10 weighted dimensions)
 - **Generates tailored PDFs** -- ATS-optimized CVs customized per job description
 - **Scans portals** automatically (Greenhouse, Ashby, Lever, company pages)
+- **Ingests AutoCLI results** from Boss and LinkedIn while keeping the same pipeline
 - **Processes in batch** -- evaluate 10+ offers in parallel with sub-agents
 - **Tracks everything** in a single source of truth with integrity checks
 
 > **Important: This is NOT a spray-and-pray tool.** Career-ops is a filter -- it helps you find the few offers worth your time out of hundreds. The system strongly recommends against applying to anything scoring below 4.0/5. Your time is valuable, and so is the recruiter's. Always review before submitting.
 
-Career-ops is agentic: Claude Code navigates career pages with Playwright, evaluates fit by reasoning about your CV vs the job description (not keyword matching), and adapts your resume per listing.
+Career-ops is agentic: Claude Code, Codex, Cursor, or OpenCode can navigate career pages with Playwright, evaluate fit by reasoning about your CV vs the job description (not keyword matching), and adapt your resume per listing.
 
 > **Heads up: the first evaluations won't be great.** The system doesn't know you yet. Feed it context -- your CV, your career story, your proof points, your preferences, what you're good at, what you want to avoid. The more you nurture it, the better it gets. Think of it as onboarding a new recruiter: the first week they need to learn about you, then they become invaluable.
 
@@ -70,6 +71,7 @@ Built by someone who used it to evaluate 740+ job offers, generate 100+ tailored
 | **Negotiation Scripts** | Salary negotiation frameworks, geographic discount pushback, competing offer leverage |
 | **ATS PDF Generation** | Keyword-injected CVs with Space Grotesk + DM Sans design |
 | **Portal Scanner** | 45+ companies pre-configured (Anthropic, OpenAI, ElevenLabs, Retool, n8n...) + custom queries across Ashby, Greenhouse, Lever, Wellfound |
+| **AutoCLI Discovery** | Optional Boss/LinkedIn search ingest via local browser session reuse and JSON mapping |
 | **Batch Processing** | Parallel evaluation with `claude -p` workers |
 | **Dashboard TUI** | Terminal UI to browse, filter, and sort your pipeline |
 | **Human-in-the-Loop** | AI evaluates and recommends, you decide and act. The system never submits an application -- you always have the final call |
@@ -93,20 +95,23 @@ cp templates/portals.example.yml portals.yml       # Customize companies
 # 4. Add your CV
 # Create cv.md in the project root with your CV in markdown
 
-# 5. Personalize with Claude
-claude   # Open Claude Code in this directory
+# 5. Personalize with your AI CLI
+claude   # or codex / cursor / opencode
 
-# Then ask Claude to adapt the system to you:
+# Then ask it to adapt the system to you:
 # "Change the archetypes to backend engineering roles"
 # "Translate the modes to English"
 # "Add these 5 companies to portals.yml"
 # "Update my profile with this CV I'm pasting"
 
-# 6. Start using
+# 6. Optional: connect AutoCLI for Boss / LinkedIn discovery
+# See docs/AUTOCLI.md, then enable autocli_sources in portals.yml
+
+# 7. Start using
 # Paste a job URL or run /career-ops
 ```
 
-> **The system is designed to be customized by Claude itself.** Modes, archetypes, scoring weights, negotiation scripts -- just ask Claude to change them. It reads the same files it uses, so it knows exactly what to edit.
+> **The system is designed to be customized by your AI CLI itself.** Modes, archetypes, scoring weights, negotiation scripts -- just ask it to change them. It reads the same files it uses, so it knows exactly what to edit.
 
 See [docs/SETUP.md](docs/SETUP.md) for the full setup guide.
 
@@ -130,6 +135,8 @@ Career-ops is a single slash command with multiple modes:
 ```
 
 Or just paste a job URL or description directly -- career-ops auto-detects it and runs the full pipeline.
+
+If you discover jobs through Boss or LinkedIn, you can also ingest them into the same pipeline with AutoCLI. See [docs/AUTOCLI.md](docs/AUTOCLI.md).
 
 ## How It Works
 
