@@ -10,6 +10,9 @@ These files contain your personal data, customizations, and work product. Update
 |------|---------|
 | `cv.md` | Your CV in markdown |
 | `config/profile.yml` | Your identity, targets, comp range |
+| `config/capability-profile.yml` | Roles and capabilities derived from your CV |
+| `config/job-intent.yml` | Roles, locations, industries, and sources you explicitly want |
+| `config/search-plan.yml` | Locally generated search plan |
 | `modes/_profile.md` | Your archetypes, narrative, negotiation scripts |
 | `article-digest.md` | Your proof points from portfolio |
 | `interview-prep/story-bank.md` | Your accumulated STAR+R stories |
@@ -21,6 +24,8 @@ These files contain your personal data, customizations, and work product. Update
 | `reports/*` | Your evaluation reports |
 | `output/*` | Your generated PDFs |
 | `jds/*` | Your saved job descriptions |
+
+Files under `examples/` are public examples only. Runtime code must never load them unless the user explicitly selects one during initialization.
 
 ## System Layer (safe to auto-update)
 

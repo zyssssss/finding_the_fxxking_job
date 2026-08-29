@@ -17,7 +17,13 @@
     "scan": "node scan.mjs",
     "seeds:filter": "node filter-company-seeds.mjs",
     "seeds:discover": "node seed-discovery.mjs",
-    "kdocs:probe": "node probe-kdocs.mjs"
+    "kdocs:probe": "node probe-kdocs.mjs",
+    "jobs": "node src/cli/jobs.mjs",
+    "jobs:init": "node src/cli/jobs.mjs init",
+    "jobs:company": "node src/cli/jobs.mjs collect --route company",
+    "jobs:platform": "node src/cli/jobs.mjs collect --route platform",
+    "jobs:all": "node src/cli/jobs.mjs collect --route all",
+    "test:discovery": "node --test tests/job-discovery.test.mjs"
   },
   "keywords": [
     "ai",

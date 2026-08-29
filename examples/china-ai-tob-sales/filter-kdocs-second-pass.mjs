@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+// Example-only legacy second pass. The generic runtime does not import this file.
+
 import { readFileSync, writeFileSync } from 'fs';
 
 const INPUT_PATH = 'data/kdocs-full.filtered.json';

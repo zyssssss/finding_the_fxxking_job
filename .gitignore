@@ -5,6 +5,17 @@ node_modules/
 autocli-bin/
 autocli.zip
 autocli-chrome-extension.zip
+.local/
+
+# Local user configuration (examples remain tracked)
+/cv.md
+/article-digest.md
+config/profile.yml
+config/capability-profile.yml
+config/job-intent.yml
+config/search-plan.yml
+modes/_profile.md
+/portals.yml
 
 # Large generated data files
 data/

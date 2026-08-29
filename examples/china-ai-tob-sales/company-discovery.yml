@@ -1,3 +1,4 @@
+# Example only. The runtime never loads this file automatically.
 allowed_company_natures:
   - 民营企业
   - 外企

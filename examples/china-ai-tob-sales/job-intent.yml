@@ -1,0 +1,36 @@
+# Example only. Copy it locally, then replace these values with your own intent.
+target_roles:
+  - AI ToB销售
+  - 云计算大客户销售
+  - 出海BD
+  - Web3商务拓展
+
+locations:
+  preferred:
+    - 深圳
+    - 广州
+    - 远程
+
+industries:
+  preferred:
+    - 人工智能
+    - AI
+    - 云计算
+    - SaaS
+    - Web3
+    - 企业服务
+  rejected:
+    - 房地产
+    - 教育培训
+    - 保险
+
+company_preferences:
+  natures:
+    - 民营企业
+    - 外企
+    - 港澳合资
+
+sources:
+  official: true
+  boss: true
+  linkedin: false

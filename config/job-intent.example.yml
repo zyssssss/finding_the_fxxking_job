@@ -1,0 +1,17 @@
+# Explicit user intent. The collector refuses to run without a local job-intent.yml.
+target_roles: []
+
+locations:
+  preferred: []
+
+industries:
+  preferred: []
+  rejected: []
+
+company_preferences:
+  natures: []
+
+sources:
+  official: true
+  boss: true
+  linkedin: false

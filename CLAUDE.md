@@ -13,7 +13,7 @@ The portfolio that goes with this system is also open source: [cv-santiago](http
 There are two layers. Read `DATA_CONTRACT.md` for the full list.
 
 **User Layer (NEVER auto-updated, personalization goes HERE):**
-- `cv.md`, `config/profile.yml`, `modes/_profile.md`, `article-digest.md`, `portals.yml`
+- `cv.md`, `config/profile.yml`, `config/capability-profile.yml`, `config/job-intent.yml`, `config/search-plan.yml`, `modes/_profile.md`, `article-digest.md`, `portals.yml`
 - `data/*`, `reports/*`, `output/*`, `interview-prep/*`
 
 **System Layer (auto-updatable, DON'T put user data here):**
@@ -93,16 +93,17 @@ When using [OpenCode](https://opencode.ai), the following slash commands are ava
 
 ### AutoCLI Discovery
 
-When the user wants stronger job discovery from Boss or LinkedIn, use AutoCLI as the discovery layer and keep the normal Career-Ops pipeline for everything else.
+The focused discovery interface is `src/cli/jobs.mjs`. It supports two routes that share one normalized pipeline:
 
-- Configure `autocli_sources` in `portals.yml`
-- Read `modes/autocli-scan.md` for routing
-- Run `node scan.mjs` to ingest results into `data/pipeline.md`
-- Continue with normal evaluation / PDF / tracker flow
+- `collect --route company`: filter the KDocs company dataset, then create official/Boss/LinkedIn tasks.
+- `collect --route platform`: search Boss/LinkedIn directly from the current user's capability and intent files.
+- `collect --route all`: combine both routes and deduplicate downstream.
+
+Never load `examples/` automatically. The user's real filters must come from ignored local files under `config/`. Both discovery routes are zero-token until the user explicitly asks the agent to evaluate a shortlist.
 
 ### First Run — Onboarding (IMPORTANT)
 
-**Before doing ANYTHING else, check if the system is set up.** Run these checks silently every time a session starts:
+**Before evaluation, PDF, or tracker modes, check if the legacy Career-Ops system is set up.** The focused `src/cli/jobs.mjs` discovery flow has its own validation and requires only `config/capability-profile.yml` and `config/job-intent.yml`; do not block that flow on legacy `profile.yml` or `portals.yml` checks.
 
 1. Does `cv.md` exist?
 2. Does `config/profile.yml` exist (not just profile.example.yml)?

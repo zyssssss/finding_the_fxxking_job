@@ -1,0 +1,11 @@
+# Example only. The runtime never loads this file unless the user selects it with --example.
+qualified_roles:
+  - 大客户销售
+  - 渠道销售
+  - 商务拓展
+  - 客户成功
+
+adjacent_roles:
+  - 技术客户经理
+  - 生态合作
+  - 出海销售

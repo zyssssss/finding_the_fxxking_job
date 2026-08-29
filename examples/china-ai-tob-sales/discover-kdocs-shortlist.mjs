@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+// Example-only legacy discovery flow. The generic runtime does not import this file.
+
 import { readFileSync, writeFileSync } from 'fs';
 import { spawnSync } from 'child_process';
 import yaml from 'js-yaml';

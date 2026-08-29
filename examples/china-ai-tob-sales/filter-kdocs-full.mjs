@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+// Example-only legacy filter. The generic runtime does not import this file.
+
 import { mkdirSync, readFileSync, writeFileSync } from 'fs';
 import yaml from 'js-yaml';
 

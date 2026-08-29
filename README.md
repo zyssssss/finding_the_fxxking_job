@@ -77,6 +77,26 @@ Built by someone who used it to evaluate 740+ job offers, generate 100+ tailored
 | **Human-in-the-Loop** | AI evaluates and recommends, you decide and act. The system never submits an application -- you always have the final call |
 | **Pipeline Integrity** | Automated merge, dedup, status normalization, health checks |
 
+## Focused, zero-token job discovery
+
+The repository now exposes one small interface for two discovery routes:
+
+```bash
+# Create neutral local configuration (edit it before collecting)
+npm run jobs:init
+
+# Or explicitly copy the public China AI ToB sales example
+npm run jobs:init -- --example china-ai-tob-sales
+
+# KDocs company-seed route
+npm run jobs:company -- --limit 20 --dry-run
+
+# Direct Boss / LinkedIn route
+npm run jobs:platform -- --task-limit 10 --dry-run
+```
+
+Both routes are deterministic and use zero LLM tokens. User filters live only in gitignored local config; files under `examples/` are never loaded automatically. See [docs/JOB-DISCOVERY.md](docs/JOB-DISCOVERY.md).
+
 ## Quick Start
 
 ```bash
