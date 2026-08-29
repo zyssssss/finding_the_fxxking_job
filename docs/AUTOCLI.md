@@ -1,6 +1,6 @@
 # AutoCLI Setup
 
-Career-Ops can use [AutoCLI](https://github.com/nashsu/AutoCLI) as a discovery layer for sources like Boss and LinkedIn, then keep using the existing Career-Ops pipeline for filtering, CV tailoring, tracking, and interview prep.
+Career-Ops can use [AutoCLI](https://github.com/nashsu/AutoCLI) as a discovery layer for Boss, then keep using the existing Career-Ops pipeline for filtering, CV tailoring, tracking, and interview prep. LinkedIn automation is intentionally unsupported; the focused job CLI only generates manual LinkedIn search links.
 
 ## What Changes
 
@@ -18,7 +18,7 @@ Expand-Archive autocli.zip -DestinationPath .
 Move-Item autocli.exe "$env:LOCALAPPDATA\Microsoft\WindowsApps\"
 ```
 
-Then follow the AutoCLI Chrome extension setup from its README so browser commands can reuse your Boss/LinkedIn login session.
+Then follow the AutoCLI Chrome extension setup from its README so browser commands can reuse your Boss login session.
 
 ## Configure `portals.yml`
 
@@ -68,7 +68,6 @@ Useful variants:
 
 ```bash
 node scan.mjs --source boss
-node scan.mjs --source linkedin --dry-run
 node scan.mjs --company Anthropic
 ```
 

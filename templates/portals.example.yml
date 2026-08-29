@@ -5,7 +5,7 @@
 #   1. Playwright → careers_url of each company (real-time, reliable)
 #   2. Greenhouse API → structured JSON (fast, Greenhouse-only)
 #   3. WebSearch with site: filters (broad discovery, may be stale)
-#   4. AutoCLI JSON ingest → Boss/LinkedIn/local browser sessions
+#   4. AutoCLI JSON ingest → Boss/local browser sessions
 #
 # IMPORTANT: Each company in tracked_companies MUST have careers_url.
 # IMPORTANT: AutoCLI sources must emit JSON (`--format json`).
@@ -281,7 +281,9 @@ search_queries:
 # For Greenhouse companies, add api: field for faster structured JSON access.
 
 # -- AutoCLI sources (optional) --
-# Use this to ingest Boss/LinkedIn results from your logged-in browser session.
+# Use this to ingest Boss results from your logged-in browser session.
+# LinkedIn automation is intentionally unsupported; `npm run jobs:platform`
+# can generate manual LinkedIn search links instead.
 # Each command should return JSON. Array form is safer on Windows.
 # Set `results_path` when the JSON payload wraps the array under an object key.
 # The `fields` map tells career-ops how to normalize each item.
@@ -305,26 +307,6 @@ autocli_sources:
       url: jobUrl
       company: brandName
       location: cityName
-
-  - name: LinkedIn — Applied AI
-    platform: linkedin
-    enabled: false
-    command:
-      - autocli
-      - linkedin
-      - search
-      - applied ai engineer
-      - --limit
-      - "30"
-      - --format
-      - json
-    results_path:
-    fields:
-      title: title
-      url: url
-      company: company
-      location: location
-
 tracked_companies:
 
   # -- AI Labs & LLM providers --

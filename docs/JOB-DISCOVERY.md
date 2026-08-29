@@ -4,8 +4,8 @@
 
 系统通过两条路径发现岗位，并在调用大模型之前完成尽可能多的零 Token 工作：
 
-1. `company`：从 `data/kdocs-full.json` 筛选目标公司，再生成官网、Boss、LinkedIn 发现任务。
-2. `platform`：根据当前用户的能力画像和求职意愿，直接生成 Boss、LinkedIn 搜索任务。
+1. `company`：从 `data/kdocs-full.json` 筛选目标公司，再生成官网引用、Boss 采集任务和 LinkedIn 手动搜索链接。
+2. `platform`：根据当前用户的能力画像和求职意愿，直接生成 Boss 采集任务和 LinkedIn 手动搜索链接。
 
 两条路径最终使用相同的岗位格式。示例配置不会被运行时自动加载。
 
@@ -39,7 +39,7 @@ npm run jobs:platform -- --task-limit 5 --dry-run
 npm run jobs:all -- --limit 5 --task-limit 10 --dry-run
 ```
 
-`--limit` 限制 KDocs 公司数；`--task-limit` 限制最终网络任务数，避免组合爆炸。
+`--limit` 限制 KDocs 公司数；`--task-limit` 只限制 AutoCLI 网络任务数，官网与 LinkedIn 手动引用不占额度。`all` 路径会在公司路径和平台路径之间轮流分配额度，避免单一路径占满。
 
 公司路径只为该公司当前 KDocs 记录中匹配的岗位和地点创建搜索任务；没有匹配时才使用少量回退搜索词。
 
@@ -51,9 +51,9 @@ npm run jobs:all -- --limit 5 --task-limit 10 --dry-run
 npm run jobs:platform -- --task-limit 1 --result-limit 5
 ```
 
-Boss 和 LinkedIn 都依赖 Chrome 扩展与有效登录状态。单个来源或任务失败只会进入 `errors`，不会阻断其他任务。
+只有 Boss 会通过 AutoCLI 读取 Chrome 登录态。单个 Boss 任务失败只会进入 `errors`，不会阻断其他任务。
 
-无 VPN 的国内电脑以 Boss 为主。LinkedIn 可在网络可达的设备运行同一接口，再把标准化结果导入后续流程。
+仓库不自动抓取 LinkedIn，以遵守其平台规则。启用 LinkedIn 后只生成标准化的手动搜索链接，可复制到网络可达的设备打开。
 
 ## 案例隔离
 

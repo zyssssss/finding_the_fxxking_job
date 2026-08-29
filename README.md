@@ -49,7 +49,7 @@ Career-Ops turns any AI coding CLI into a full job search command center. Instea
 - **Evaluates offers** with a structured A-F scoring system (10 weighted dimensions)
 - **Generates tailored PDFs** -- ATS-optimized CVs customized per job description
 - **Scans portals** automatically (Greenhouse, Ashby, Lever, company pages)
-- **Ingests AutoCLI results** from Boss and LinkedIn while keeping the same pipeline
+- **Ingests AutoCLI results** from Boss and creates optional manual LinkedIn search links
 - **Processes in batch** -- evaluate 10+ offers in parallel with sub-agents
 - **Tracks everything** in a single source of truth with integrity checks
 
@@ -71,7 +71,7 @@ Built by someone who used it to evaluate 740+ job offers, generate 100+ tailored
 | **Negotiation Scripts** | Salary negotiation frameworks, geographic discount pushback, competing offer leverage |
 | **ATS PDF Generation** | Keyword-injected CVs with Space Grotesk + DM Sans design |
 | **Portal Scanner** | 45+ companies pre-configured (Anthropic, OpenAI, ElevenLabs, Retool, n8n...) + custom queries across Ashby, Greenhouse, Lever, Wellfound |
-| **AutoCLI Discovery** | Optional Boss/LinkedIn search ingest via local browser session reuse and JSON mapping |
+| **AutoCLI Discovery** | Optional Boss search ingest via local browser session reuse; LinkedIn stays manual |
 | **Batch Processing** | Parallel evaluation with `claude -p` workers |
 | **Dashboard TUI** | Terminal UI to browse, filter, and sort your pipeline |
 | **Human-in-the-Loop** | AI evaluates and recommends, you decide and act. The system never submits an application -- you always have the final call |
@@ -91,7 +91,7 @@ npm run jobs:init -- --example china-ai-tob-sales
 # KDocs company-seed route
 npm run jobs:company -- --limit 20 --dry-run
 
-# Direct Boss / LinkedIn route
+# Direct Boss route + optional LinkedIn manual links
 npm run jobs:platform -- --task-limit 10 --dry-run
 ```
 
@@ -124,7 +124,7 @@ claude   # or codex / cursor / opencode
 # "Add these 5 companies to portals.yml"
 # "Update my profile with this CV I'm pasting"
 
-# 6. Optional: connect AutoCLI for Boss / LinkedIn discovery
+# 6. Optional: connect AutoCLI for Boss discovery
 # See docs/AUTOCLI.md, then enable autocli_sources in portals.yml
 
 # 7. Start using
@@ -156,7 +156,7 @@ Career-ops is a single slash command with multiple modes:
 
 Or just paste a job URL or description directly -- career-ops auto-detects it and runs the full pipeline.
 
-If you discover jobs through Boss or LinkedIn, you can also ingest them into the same pipeline with AutoCLI. See [docs/AUTOCLI.md](docs/AUTOCLI.md).
+Boss results can be ingested into the same pipeline with AutoCLI. For LinkedIn, use the manual links emitted by `npm run jobs:platform`. See [docs/AUTOCLI.md](docs/AUTOCLI.md).
 
 ## How It Works
 

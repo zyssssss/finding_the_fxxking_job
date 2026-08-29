@@ -4,7 +4,7 @@
  * scan.mjs — Hybrid portal scanner
  *
  * Fetches Greenhouse, Ashby, and Lever APIs directly, and can also
- * ingest JSON search results produced by AutoCLI (for Boss/LinkedIn).
+ * ingest JSON search results produced by AutoCLI (for Boss).
  * Applies title filters from portals.yml, deduplicates against existing
  * history, and appends new offers to pipeline.md + scan-history.tsv.
  *
@@ -298,6 +298,9 @@ function materializeOfferWithJd(source, offer, date, dryRun) {
 }
 
 function runAutoCliCommand(source) {
+  if (String(source.platform || '').toLowerCase() === 'linkedin') {
+    throw new Error('LinkedIn AutoCLI collection is disabled; use the manual links from npm run jobs:platform');
+  }
   if (!source.command) {
     throw new Error('missing command');
   }

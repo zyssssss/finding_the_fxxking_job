@@ -2,7 +2,7 @@
 
 // Example-only legacy second pass. The generic runtime does not import this file.
 
-import { readFileSync, writeFileSync } from 'fs';
+import { existsSync, readFileSync, writeFileSync } from 'fs';
 
 const INPUT_PATH = 'data/kdocs-full.filtered.json';
 const OUTPUT_JSON = 'data/kdocs-second-pass.json';
@@ -102,6 +102,7 @@ function classifyCompany(row) {
 }
 
 function main() {
+  if (!existsSync(INPUT_PATH)) throw new Error(`Required file not found: ${INPUT_PATH}`);
   const payload = JSON.parse(readFileSync(INPUT_PATH, 'utf-8'));
   const source = payload.strong_company_industry || [];
   const enriched = source.map(classifyCompany).sort((a, b) => b.second_pass_score - a.second_pass_score || b.score - a.score || a.row - b.row);

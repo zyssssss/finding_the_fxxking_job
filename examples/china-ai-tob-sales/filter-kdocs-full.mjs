@@ -2,7 +2,7 @@
 
 // Example-only legacy filter. The generic runtime does not import this file.
 
-import { mkdirSync, readFileSync, writeFileSync } from 'fs';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'fs';
 import yaml from 'js-yaml';
 
 const parseYaml = yaml.load;
@@ -127,6 +127,9 @@ function dedupeByCompany(rows) {
 }
 
 function main() {
+  for (const path of [INPUT_PATH, DISCOVERY_CONFIG_PATH, PORTALS_PATH]) {
+    if (!existsSync(path)) throw new Error(`Required file not found: ${path}`);
+  }
   mkdirSync('data', { recursive: true });
   const input = JSON.parse(readFileSync(INPUT_PATH, 'utf-8'));
   const config = parseYaml(readFileSync(DISCOVERY_CONFIG_PATH, 'utf-8'));

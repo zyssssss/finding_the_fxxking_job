@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { resolve } from 'node:path';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { loadUserConfig } from '../core/config.mjs';
 import { initializeFromExample } from '../core/init-config.mjs';
@@ -9,6 +9,7 @@ import { buildSearchPlan } from '../core/search-plan.mjs';
 import { buildCompanyTasks, selectCompanies } from '../discovery/company-discovery.mjs';
 import { buildPlatformTasks } from '../discovery/platform-discovery.mjs';
 import { collectAutoCliTasks } from '../adapters/autocli.mjs';
+import { referenceFromTask, selectTasks } from '../core/sources.mjs';
 
 function option(args, name, fallback = undefined) {
   const index = args.indexOf(name);
@@ -51,6 +52,7 @@ function main() {
 
   if (route === 'company' || route === 'all') {
     const datasetPath = resolve(option(args, '--dataset', 'data/kdocs-full.json'));
+    if (!existsSync(datasetPath)) throw new Error(`KDocs dataset not found: ${datasetPath}`);
     const dataset = JSON.parse(readFileSync(datasetPath, 'utf-8'));
     const limit = Number(option(args, '--limit', '20'));
     companies = selectCompanies(dataset.rows, config.intent, searchPlan, limit);
@@ -62,7 +64,7 @@ function main() {
   }
 
   const taskLimit = Number(option(args, '--task-limit', '0'));
-  const selectedTasks = taskLimit > 0 ? tasks.slice(0, taskLimit) : tasks;
+  const selectedTasks = selectTasks(tasks, taskLimit);
 
   if (dryRun) {
     console.log(JSON.stringify({ route, companies, tasks: selectedTasks }, null, 2));
@@ -72,7 +74,9 @@ function main() {
   const executable = resolve(option(args, '--autocli', '.local/bin/autocli'));
   const resultLimit = Number(option(args, '--result-limit', '20'));
   const collected = collectAutoCliTasks(selectedTasks, { executable, resultLimit });
-  const references = selectedTasks.filter(task => task.source === 'official');
+  const references = selectedTasks
+    .filter(task => task.execution !== 'autocli')
+    .map(referenceFromTask);
   console.log(JSON.stringify({ route, companies, references, ...collected }, null, 2));
 }
 

@@ -4,7 +4,7 @@
 
 - One AI coding CLI: Claude Code, Codex, Cursor, or OpenCode
 - Node.js 18+ (for PDF generation and utility scripts)
-- (Optional) [AutoCLI](https://github.com/nashsu/AutoCLI) for Boss / LinkedIn discovery
+- (Optional) [AutoCLI](https://github.com/nashsu/AutoCLI) for Boss discovery
 - (Optional) Go 1.21+ (for the dashboard TUI)
 
 ## Quick Start (5 steps)
@@ -43,7 +43,7 @@ Edit `portals.yml`:
 - Add companies you want to track in `tracked_companies`
 - Customize `search_queries` for your preferred job boards
 
-### 5. Optional: connect AutoCLI for Boss / LinkedIn
+### 5. Optional: connect AutoCLI for Boss
 
 See [docs/AUTOCLI.md](AUTOCLI.md), then enable `autocli_sources` in `portals.yml`.
 

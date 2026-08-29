@@ -20,7 +20,7 @@ There are two layers. Read `DATA_CONTRACT.md` for the full list.
 - `modes/_shared.md`, `modes/oferta.md`, all other modes
 - `CLAUDE.md`, `*.mjs` scripts, `dashboard/*`, `templates/*`, `batch/*`
 
-**THE RULE: When the user asks to customize anything (archetypes, narrative, negotiation scripts, proof points, location policy, comp targets), ALWAYS write to `modes/_profile.md` or `config/profile.yml`. NEVER edit `modes/_shared.md` for user-specific content.** This ensures system updates don't overwrite their customizations.
+**THE RULE: When the user asks to customize evaluation behavior (archetypes, narrative, negotiation scripts, proof points, location policy, comp targets), ALWAYS write to `modes/_profile.md` or `config/profile.yml`. Focused discovery roles, locations, industries, and sources belong in `config/job-intent.yml`. NEVER edit `modes/_shared.md` for user-specific content.** This ensures system updates don't overwrite their customizations.
 
 ## Update Check
 
@@ -53,7 +53,7 @@ AI-powered job search automation built on Claude Code and compatible AI CLIs: pi
 | `data/pipeline.md` | Inbox of pending URLs |
 | `data/scan-history.tsv` | Scanner dedup history |
 | `portals.yml` | Query and company config |
-| `portals.yml` `autocli_sources` | Optional Boss / LinkedIn AutoCLI ingest |
+| `portals.yml` `autocli_sources` | Optional Boss AutoCLI ingest |
 | `templates/cv-template.html` | HTML template for CVs |
 | `generate-pdf.mjs` | Playwright: HTML to PDF |
 | `article-digest.md` | Compact proof points from portfolio (optional) |
@@ -95,8 +95,8 @@ When using [OpenCode](https://opencode.ai), the following slash commands are ava
 
 The focused discovery interface is `src/cli/jobs.mjs`. It supports two routes that share one normalized pipeline:
 
-- `collect --route company`: filter the KDocs company dataset, then create official/Boss/LinkedIn tasks.
-- `collect --route platform`: search Boss/LinkedIn directly from the current user's capability and intent files.
+- `collect --route company`: filter the KDocs company dataset, then create official references, Boss tasks, and LinkedIn manual search links.
+- `collect --route platform`: search Boss from the current user's capability and intent files and generate optional LinkedIn manual search links.
 - `collect --route all`: combine both routes and deduplicate downstream.
 
 Never load `examples/` automatically. The user's real filters must come from ignored local files under `config/`. Both discovery routes are zero-token until the user explicitly asks the agent to evaluate a shortlist.
@@ -143,7 +143,7 @@ If `portals.yml` is missing:
 
 Copy `templates/portals.example.yml` → `portals.yml`. If they gave target roles in Step 2, update `title_filter.positive` to match.
 
-If the user mainly discovers roles on Boss or LinkedIn, also offer AutoCLI onboarding and point them to `docs/AUTOCLI.md`.
+If the user mainly discovers roles on Boss, offer AutoCLI onboarding and point them to `docs/AUTOCLI.md`. For LinkedIn, only offer the manual links from `src/cli/jobs.mjs`.
 
 #### Step 4: Tracker
 If `data/applications.md` doesn't exist, create it:

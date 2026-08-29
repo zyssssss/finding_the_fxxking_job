@@ -50,22 +50,25 @@ export function buildCompanyTasks(companies, searchPlan) {
       : (searchPlan.locations.slice(0, 1).length > 0 ? searchPlan.locations.slice(0, 1) : ['']);
 
     if (searchPlan.sources.official && company.apply_url) {
-      tasks.push({ source: 'official', company: company.company_name, url: company.apply_url });
+      tasks.push({
+        source: 'official',
+        execution: SOURCE_DEFINITIONS.official.execution,
+        discovery_path: 'company_seed',
+        company: company.company_name,
+        title: roles.join(' / '),
+        location: locations.join(' / '),
+        url: company.apply_url,
+      });
     }
-    for (const source of ['boss', 'linkedin']) {
-      if (!searchPlan.sources[source]) continue;
-      for (const location of locations) {
-        for (const role of roles) {
-          tasks.push({
-            source,
-            company: company.company_name,
-            query: `${company.company_name} ${role}`,
-            location,
-          });
-        }
-      }
-    }
+    tasks.push(...buildSearchTasks({
+      searchPlan,
+      roles,
+      locations,
+      company: company.company_name,
+      discoveryPath: 'company_seed',
+    }));
   }
 
   return tasks;
 }
+import { buildSearchTasks, SOURCE_DEFINITIONS } from '../core/sources.mjs';

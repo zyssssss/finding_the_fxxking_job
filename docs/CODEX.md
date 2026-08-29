@@ -49,8 +49,9 @@ layer.
 
 ## Boss / LinkedIn Discovery
 
-If the user wants stronger discovery from Boss or LinkedIn, configure
-`autocli_sources` in `portals.yml` and use `scan.mjs` as the ingestion point.
+For Boss discovery, configure `autocli_sources` in `portals.yml` and use
+`scan.mjs` as the ingestion point. For LinkedIn, only generate manual links
+with `npm run jobs:platform`; automated collection is unsupported.
 
 - Read `docs/AUTOCLI.md`
 - Use `modes/autocli-scan.md` when routing that work

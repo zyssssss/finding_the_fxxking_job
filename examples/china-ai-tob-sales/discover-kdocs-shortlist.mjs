@@ -2,7 +2,7 @@
 
 // Example-only legacy discovery flow. The generic runtime does not import this file.
 
-import { readFileSync, writeFileSync } from 'fs';
+import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { spawnSync } from 'child_process';
 import yaml from 'js-yaml';
 
@@ -114,6 +114,9 @@ function discoverBoss(company, autocliPath) {
 }
 
 function main() {
+  for (const path of [INPUT_PATH, PORTALS_PATH]) {
+    if (!existsSync(path)) throw new Error(`Required file not found: ${path}`);
+  }
   const payload = JSON.parse(readFileSync(INPUT_PATH, 'utf-8'));
   const portals = parseYaml(readFileSync(PORTALS_PATH, 'utf-8'));
   const autocliPath = String(portals.autocli_sources?.[0]?.command?.[0] || '').trim();
@@ -122,9 +125,11 @@ function main() {
   const source = payload.recommended || [];
   const selected = limit > 0 ? source.slice(offset, offset + limit) : source.slice(offset);
   let existing = { stats: {}, shortlist: [] };
-  try {
-    existing = JSON.parse(readFileSync(OUTPUT_JSON, 'utf-8'));
-  } catch {}
+  if (existsSync(OUTPUT_JSON)) {
+    try {
+      existing = JSON.parse(readFileSync(OUTPUT_JSON, 'utf-8'));
+    } catch {}
+  }
   const done = new Set((existing.shortlist || []).map(item => item.company_name));
   const shortlist = [...(existing.shortlist || [])];
 

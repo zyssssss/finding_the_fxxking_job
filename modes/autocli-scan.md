@@ -1,6 +1,6 @@
 # Mode: autocli-scan
 
-Use this mode when the user wants Career-Ops to discover jobs through AutoCLI-backed sources such as Boss or LinkedIn instead of relying only on ATS APIs and generic web search.
+Use this mode when the user wants Career-Ops to discover jobs through AutoCLI-backed Boss search instead of relying only on ATS APIs and generic web search. LinkedIn automation is unsupported; use the manual links from `npm run jobs:platform`.
 
 ## Goal
 
@@ -23,7 +23,7 @@ Preserve the normal Career-Ops pipeline while replacing or strengthening the dis
 - Keep AutoCLI source definitions in `portals.yml` under `autocli_sources`
 - Prefer `command` as a YAML array, not a shell string
 - Require JSON output from AutoCLI
-- Map fields explicitly when Boss/LinkedIn output names differ from Career-Ops canonical fields
+- Map Boss fields explicitly when output names differ from Career-Ops canonical fields
 
 ## Workflow
 
